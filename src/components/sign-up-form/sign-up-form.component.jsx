@@ -24,13 +24,6 @@ const SignUpForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-
-        const displayName = event.target.displayName.value
-        const email = event.target.email.value
-        const password = event.target.password.value
-        const confirmPassword = event.target.confirmPassword.value
-
-
         if (password !== confirmPassword) {
             return setErrorMessage(true)} 
             
@@ -64,9 +57,9 @@ const SignUpForm = () => {
             <span>Sign Up With Email And Password</span>
             <form onSubmit={handleSubmit}>
                 <FormInput label='Name' type='text' required onChange={handleChange} name='displayName' value={displayName}/>
-                <FormInput label= 'Email' type='email' required onChange={handleChange} name='email' value={email}/>
-                <FormInput label= 'Password' type='password' required onChange={handleChange} name='password' value={password}/>
-                <FormInput label= 'Confirm Password' type='password' required onChange={handleChange} name='confirmPassword' value={confirmPassword}/>
+                <FormInput label='Email' type='email' required onChange={handleChange} name='email' value={email}/>
+                <FormInput label='Password' type='password' required onChange={handleChange} name='password' value={password}/>
+                <FormInput label='Confirm Password' type='password' required onChange={handleChange} name='confirmPassword' value={confirmPassword}/>
                 <Button type='submit'>Sign Up</Button>
             </form>
         </div>
