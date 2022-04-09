@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { ToggleCartContext} from '../../contexts/toggle-cart.context'
+import { CartContext} from '../../contexts/cart.context'
 
 import {ReactComponent as ShoppingIcon} from '../../assets/shopping-bag.svg'
 
@@ -8,7 +8,7 @@ import './cart-icon.styles.scss'
 
 const CartIcon = () => {
 
-    const {toggleCart, setToggleCart} = useContext(ToggleCartContext)
+    const {toggleCart, setToggleCart, totalCartQuantity} = useContext(CartContext)
 
 
     const handleToggle = () => setToggleCart(!toggleCart)
@@ -17,7 +17,7 @@ const CartIcon = () => {
     return (
         <div onClick={handleToggle} className='cart-icon-container'>
             <ShoppingIcon className='shopping-icon'/>
-            <span className='item-count'>10</span>
+            <span className='item-count'>{totalCartQuantity}</span>
         </div>
     )
 }
