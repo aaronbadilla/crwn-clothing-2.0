@@ -18,8 +18,6 @@ const Navigation = () => {
     const {currentUser} = useContext(UserContext)
     const {toggleCart} = useContext(CartContext)
 
-    console.log(currentUser)
-
 
 
     return (
