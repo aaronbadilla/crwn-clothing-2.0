@@ -2,9 +2,10 @@ import {useState} from 'react'
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 
 import FormInput from '../form-input/form-input.component'
-import Button from '../button/button.component'
+import Button, {BUTTON_TYPE_CLASSES} from '../button/button.component'
 
-import './sign-up-form.styles.scss'
+import './sign-up-form.styles.jsx'
+import { SignUpContainer } from './sign-up-form.styles.jsx'
 
 const defaultFormFields = {
     displayName: '',
@@ -27,7 +28,6 @@ const SignUpForm = () => {
         event.preventDefault()
         if (password !== confirmPassword) {
             return setErrorMessage(true)} 
-            
         try {
            const {user} = await createAuthUserWithEmailAndPassword(email, password);
            const {userDocRef} = await createUserDocumentFromAuth(user, {displayName});
@@ -38,8 +38,6 @@ const SignUpForm = () => {
         } catch (error) {
             console.log('user creation encountered an error', error)
         }
-
-
     }
 
     const handleChange = (event) => {
@@ -49,7 +47,7 @@ const SignUpForm = () => {
     }
         
     return (
-        <div className='sign-up-container'>
+        <SignUpContainer>
             {errorMessage ? 
                 (<h2>Passwords Don't Match Please Check Your Passwords And Try Again</h2>)
                  : null}
@@ -60,9 +58,9 @@ const SignUpForm = () => {
                 <FormInput label='Email' type='email' required onChange={handleChange} name='email' value={email}/>
                 <FormInput label='Password' type='password' required onChange={handleChange} name='password' value={password}/>
                 <FormInput label='Confirm Password' type='password' required onChange={handleChange} name='confirmPassword' value={confirmPassword}/>
-                <Button type='submit'>Sign Up</Button>
+                <Button buttonType={BUTTON_TYPE_CLASSES.inverted}>Sign Up</Button>
             </form>
-        </div>
+        </SignUpContainer>
     )
 }
 
